@@ -4,6 +4,22 @@
 
 
 
+## 생각해 보기
+
+- sa, clusterrole, clusterrolebinding 만들기
+  - sa 를 사용, deployments, statefulsets 가 create 만 가능
+- pvc  만들기 (storageclass 연결), pvc 를 pod 와 연결, pvc size 변경 및 변경내용을 기록하기
+- deployment scale out
+- etcd 백업 및 restore (etcd snapeshot save, etcd snapshot restore)
+- master upgrade (1.21.1 -> 1.22.0)
+- node 문제 찾고 영구적으로 해결 (kubelet start and systemctl enable kubelet)
+- 특정 pod label 에서 cpu 를 가장 많이 사용하는 pod 찾기 (kubectl top pod -l name=app)
+- NetworkPolicy (특정 namespace 의 모든 pod 는 특정 namespace 의 pod 의 특정 port 만 허용)
+- 기존 pod 에 sidecar container 를 추가하고 hostpath 에 로그 남기기
+- ingress resource 만들기  (path /hello)
+
+
+
 ### bashrc 참고
 
 ```bash
