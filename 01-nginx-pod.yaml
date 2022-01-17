@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-pod
+  namespace: kube-sample
+spec:
+  containers:
+  - name: nginx
+    image: nginx:1.21.0
+    ports:
+    - containerPort: 80
