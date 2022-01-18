@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webserver-rolling
+  namespace: kube-sample
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: webserver-rolling
+  template:
+    metadata:
+      labels:
+        app: webserver-rolling
+        type: rolling
+    spec:
+      nodeSelector:
+        nodetype: rolling
+      containers:
+      - name: webserver-rolling
+        image: nginx:1.14.0
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        - name: hostvol
+          mountPath: /usr/share/nginx/html
+      volumes:
+      - name: hostvol
+        hostPath:
+          path: /mnt/vol_green
+

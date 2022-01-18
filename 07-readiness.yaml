@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-readiness
+  namespace: kube-sample
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app-readiness
+  template:
+    metadata:
+      labels:
+        app: app-readiness
+    spec:
+      containers:
+      - name: my-app
+        image: nginx:1.21.0
+        ports:
+          - containerPort: 80
+        readinessProbe:
+          httpGet:
+            path: /_status/healthz
+            port: 80
+            httpHeaders:
+            - name: X-Custom-Header
+              value: Awesome
+          initialDelaySeconds: 30
+          timeoutSeconds: 3
+          periodSeconds: 3
+

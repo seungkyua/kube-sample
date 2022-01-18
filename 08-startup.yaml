@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-startup
+  namespace: kube-sample
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app-startup
+  template:
+    metadata:
+      labels:
+        app: app-startup
+    spec:
+      containers:
+      - name: my-app
+        image: nginx:1.21.0
+        ports:
+          - containerPort: 80
+        startupProbe:
+          httpGet:
+            path: /_status/healthz
+            port: 80
+          failureThreshold: 30
+          periodSeconds: 10
+

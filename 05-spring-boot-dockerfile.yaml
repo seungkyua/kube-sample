@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: spring-boot
+  name: spring-boot
+  namespace: kube-sample
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: spring-boot
+  template:
+    metadata:
+      labels:
+        app: spring-boot
+    spec:
+      containers:
+      - name: spring-boot
+        image: seungkyua/spring-boot-dockerfile:alpine-env
+        ports:
+        - containerPort: 8080
+        env:
+        - name: JAVA_OPTS
+          value: "-Ddebug -Xms64m -Xmx128m"
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: spring-boot
+  namespace: kube-sample
+spec:
+  selector:
+    app: spring-boot
+  ports:
+  - port: 8080
+    targetPort: 8080
+    protocol: TCP
+  type: ClusterIP
+

@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: spring-boot-ingress
+  namespace: kube-sample
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+spec:
+  rules:
+  - host: k1-node01
+    http:
+      paths:
+      - path: /greeting
+        pathType: Prefix
+        backend:
+          service:
+            name: spring-boot
+            port:
+              number: 8080
