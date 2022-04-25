@@ -1,0 +1,18 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nettool
+  namespace: kube-sample
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nettool
+  template:
+    metadata:
+      labels:
+        app: nettool
+    spec:
+      containers:
+      - image: praqma/network-multitool
+        name: network-multitool
