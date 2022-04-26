@@ -26,6 +26,7 @@ kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
   name: nginx-local-pvc
+  namespace: kube-sample
 spec:
   accessModes:
   - ReadWriteOnce
