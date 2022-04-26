@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-emptydir
+  namespace: kube-sample
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: web-emptydir
+  template:
+    metadata:
+      labels:
+        app: web-emptydir
+    spec:
+      containers:
+      - name: web-emptydir
+        image: nginx:1.21.0
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        - name: cache-volume
+          mountPath: /cache
+      volumes:
+      - name: cache-volume
+        emptyDir: {}
+
