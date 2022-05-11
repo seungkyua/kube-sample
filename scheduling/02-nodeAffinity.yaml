@@ -22,7 +22,6 @@ spec:
                 operator: In
                 values:
                 - enabled
-            nodeSelectorTerms:
             - matchExpressions:
               - key: kubernetes.io/os
                 operator: In
