@@ -27,7 +27,7 @@ spec:
               - key: kubernetes.io/os
                 operator: In
                 values:
-                - linux
+                - windows
           preferredDuringSchedulingIgnoredDuringExecution:
           - weight: 1
             preference:
