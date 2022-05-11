@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-node-affinity
+  namespace: kube-sample
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      affinity:
+		    nodeAffinity:
+		      requiredDuringSchedulingIgnoredDuringExecution:
+		        nodeSelectorTerms:
+		        - matchExpressions:
+		          - key: nginx
+		            operator: In
+		            values:
+		            - enabled
+		      preferredDuringSchedulingIgnoredDuringExecution:
+		      - weight: 1
+		        preference:
+		          matchExpressions:
+		          - key: another-node-label-key
+		            operator: In
+		            values:
+		            - another-node-label-value
+      containers:
+      - name: nginx
+        image: nginx:1.21.0
+        ports:
+        - containerPort: 80
