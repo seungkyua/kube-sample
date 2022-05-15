@@ -1,17 +1,17 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx-pod-anti-affinity
+  name: nginx-pod-anti-affinity-host
   namespace: kube-sample
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: nginx-pod-anti-affinity
+      app: nginx-pod-anti-affinity-host
   template:
     metadata:
       labels:
-        app: nginx-pod-anti-affinity
+        app: nginx-pod-anti-affinity-host
     spec:
       affinity:
         podAntiAffinity:
@@ -21,7 +21,7 @@ spec:
               - key: app
                 operator: In
                 values:
-                - nginx-pod-anti-affinity
+                - nginx-pod-anti-affinity-host
             topologyKey: kubernetes.io/hostname
         nodeAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:

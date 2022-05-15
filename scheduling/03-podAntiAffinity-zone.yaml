@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-pod-anti-affinity-zone
+  namespace: kube-sample
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: nginx-pod-anti-affinity-zone
+  template:
+    metadata:
+      labels:
+        app: nginx-pod-anti-affinity-zone
+    spec:
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: app
+                operator: In
+                values:
+                - nginx-pod-anti-affinity-zone
+            topologyKey: topology.kubernetes.io/zone
+      containers:
+      - name: nginx
+        image: nginx:1.21.0
+        ports:
+        - containerPort: 80
