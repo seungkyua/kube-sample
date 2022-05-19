@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: DaemonSet
 metadata:
   name: fluentd-elasticsearch-worker
-  namespace: kube-system
+  namespace: kube-sample
   labels:
     k8s-app: fluentd-logging
 spec:
