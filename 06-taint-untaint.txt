@@ -1,0 +1,12 @@
+# control-plane list
+kubectl get nodes --show-labels | grep node-role
+
+# taint
+kubectl taint nodes ip-172-31-1-18.ap-northeast-2.compute.internal node-role.kubernetes.io/control-plane=:NoSchedule
+kubectl taint nodes ip-172-31-22-52.ap-northeast-2.compute.internal node-role.kubernetes.io/control-plane=:NoSchedule
+kubectl taint nodes ip-172-31-44-18.ap-northeast-2.compute.internal node-role.kubernetes.io/control-plane=:NoSchedule
+
+# untaint
+kubectl taint nodes ip-172-31-1-18.ap-northeast-2.compute.internal node-role.kubernetes.io/control-plane-
+kubectl taint nodes ip-172-31-22-52.ap-northeast-2.compute.internal node-role.kubernetes.io/control-plane-
+kubectl taint nodes ip-172-31-44-18.ap-northeast-2.compute.internal node-role.kubernetes.io/control-plane-

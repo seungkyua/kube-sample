@@ -19,7 +19,7 @@ spec:
         - key: kubernetes.io/hostname
           operator: In
           values:
-          - k1-node02
+          - ip-172-31-10-94.ap-northeast-2.compute.internal
 
 ---
 kind: PersistentVolumeClaim
